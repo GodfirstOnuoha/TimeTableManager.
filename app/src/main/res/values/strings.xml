@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">TimeTableManager</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="show_notification">Show Notification</string>
+    <string name="reset_database">Reset Database</string>
+    <string name="clear_all_data_related_to_your_timetable">Clear all data related to your timetable</string>
+    <string name="set_project_notification_time">Set project notification time</string>
+    <string name="you_will_receive_notification_at_12_30">You will receive notification at 12:30</string>
+    <string name="developer">Developer</string>
+    <string name="nwevo_peace_chinedu">Nwevo Peace Chinedu</string>
+    <string name="designer">Designer</string>
+    <string name="_8_00am_9_00am">8:00AM - 9:00AM</string>
+    <string name="software_engineering">Software Engineering</string>
+    <string name="csc_226">CSC 226</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="add_button">add button</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="home">Home</string>
+    <string name="logo">logo</string>
+</resources>

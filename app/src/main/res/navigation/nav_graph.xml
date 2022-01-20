@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signUpFragment">
+
+    <fragment
+        android:id="@+id/sundayFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.SundayFragment"
+        android:label="@string/sunday"
+        tools:layout="@layout/fragment_sunday" />
+    <fragment
+        android:id="@+id/mondayFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.MondayFragment"
+        android:label="@string/monday"
+        tools:layout="@layout/fragment_monday" />
+    <fragment
+        android:id="@+id/tuesdayFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.TuesdayFragment"
+        android:label="@string/tuesday"
+        tools:layout="@layout/fragment_tuesday" />
+    <fragment
+        android:id="@+id/wednesdayFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.WednesdayFragment"
+        android:label="@string/wednesday"
+        tools:layout="@layout/fragment_wednesday" />
+    <fragment
+        android:id="@+id/thursdayFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.ThursdayFragment"
+        android:label="@string/thursday"
+        tools:layout="@layout/fragment_thursday" />
+    <fragment
+        android:id="@+id/fridayFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.FridayFragment"
+        android:label="@string/friday"
+        tools:layout="@layout/fragment_friday" />
+    <fragment
+        android:id="@+id/saturdayFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.SaturdayFragment"
+        android:label="@string/saturday"
+        tools:layout="@layout/fragment_saturday" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.SignUpFragment"
+        android:label="@string/sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.peacecodes.timetablemanager.fragments.SignInFragment"
+        android:label="@string/sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_home"
+            app:destination="@id/home" />
+    </fragment>
+
+    <activity
+        android:id="@+id/home"
+        android:name="com.peacecodes.timetablemanager.activities.Home"
+        android:label="@string/home"
+        tools:layout="@layout/activity_home" />
+</navigation>

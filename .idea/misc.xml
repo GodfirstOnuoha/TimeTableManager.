@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/alarm.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/book.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/btn_bg.xml" value="0.240625" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/list.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/person.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/phone.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/place.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/sensor.xml" value="0.1935185185185185" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/settings.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/activity_editor.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/activity_home.xml" value="0.22" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/activity_main2.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/activity_set.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/activity_splash_screen.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/add_item_dialog.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/btn_bg.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/edit_dialog.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_about.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_editor.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_friday.xml" value="0.1" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_monday.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_saturday.xml" value="0.12" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_settings.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_sign_in.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_sign_up.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_sunday.xml" value="0.22" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_thursday.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_tuesday.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_wednesday.xml" value="0.18" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/fragment_widget.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/nav_header.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/single_list_item.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/singlr_list_item.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/menu/activity_main_drawer_item.xml" value="0.4224464060529634" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

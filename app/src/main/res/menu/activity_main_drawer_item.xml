@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/signUpFragment"
+            android:title="@string/sign_up"/>
+
+        <item android:id="@+id/signInFragment"
+            android:title="@string/sign_in"/>
+
+        <item android:id="@+id/home"
+            android:title="@string/home"/>
+
+        <item android:id="@+id/sundayFragment"
+            android:title="@string/sunday"/>
+
+        <item android:id="@+id/mondayFragment"
+            android:title="@string/monday"/>
+
+        <item android:id="@+id/tuesdayFragment"
+            android:title="@string/tuesday"/>
+
+        <item android:id="@+id/wednesdayFragment"
+            android:title="@string/wednesday"/>
+
+        <item android:id="@+id/thursdayFragment"
+            android:title="@string/thursday"/>
+
+        <item android:id="@+id/fridayFragment"
+            android:title="@string/friday"/>
+
+        <item android:id="@+id/saturdayFragment"
+            android:title="@string/saturday"/>
+
+        <item android:id="@+id/settingsFragment"
+            android:title="@string/settings"
+            android:icon="@drawable/settings"/>
+
+        <item android:id="@+id/aboutFragment"
+            android:title="@string/about"
+            android:icon="@drawable/person"/>
+
+    </group>
+
+</menu>
