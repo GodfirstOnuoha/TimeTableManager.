@@ -40,7 +40,7 @@ private val timeTableList = mutableListOf<TimeTable>()
 //    }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addItems(timeTable: List<TimeTable>){
+    fun setUpData(timeTable: List<TimeTable>){
         this.timeTableList.addAll(timeTable)
         notifyDataSetChanged()
     }

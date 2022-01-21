@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +11,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="32dp"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textColor="@color/cyan_800"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -24,8 +23,10 @@
         android:id="@+id/fullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Full Name"
+        android:hint="@string/full_name"
         android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="@+id/sign_text"
         app:layout_constraintStart_toStartOf="@+id/sign_text"
@@ -33,15 +34,17 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Username"
-        android:layout_marginTop="5dp"
+        android:hint="@string/username"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="@+id/sign_text"
         app:layout_constraintStart_toStartOf="@+id/sign_text"
@@ -56,8 +59,13 @@
         android:id="@+id/pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:layout_marginTop="5dp"
+        android:hint="@string/password"
+        app:endIconMode="password_toggle"
+        app:helperTextEnabled="true"
+        app:helperText="1 Uppercase, 2 lowercase"
+        app:counterEnabled="true"
+        app:counterMaxLength="6"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="@+id/sign_text"
         app:layout_constraintStart_toStartOf="@+id/sign_text"
@@ -65,15 +73,21 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Confirm Password"
-        android:layout_marginTop="5dp"
+        android:hint="@string/confirm_password"
+        app:endIconMode="password_toggle"
+        app:helperTextEnabled="true"
+        app:helperText="1 Uppercase, 2 lowercase"
+        app:counterEnabled="true"
+        app:counterMaxLength="6"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="@+id/sign_text"
         app:layout_constraintStart_toStartOf="@+id/sign_text"
@@ -81,7 +95,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -91,8 +106,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
+        android:textAllCaps="false"
         android:background="@drawable/btn_bg"
-        android:text="Sign Up With Email"
+        android:text="@string/sign_up_with_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/confirm" />
@@ -102,8 +118,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/btn_bg"
-        android:text="Sign Up with Google"
+        android:textAllCaps="false"
+        android:background="@drawable/curve_bg"
+        android:text="@string/sign_up_with_google"
         app:layout_constraintEnd_toEndOf="@+id/emailButton"
         app:layout_constraintStart_toStartOf="@+id/emailButton"
         app:layout_constraintTop_toBottomOf="@id/emailButton" />

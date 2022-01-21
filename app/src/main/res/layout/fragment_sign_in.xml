@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:text="Welcome Back!"
+        android:text="@string/welcome_back"
         android:textColor="@color/cyan_800"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -26,7 +26,7 @@
         android:id="@+id/sign"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sign in to continue"
+        android:text="@string/sign_in_to_continue"
         app:layout_constraintTop_toBottomOf="@id/welcome"
         app:layout_constraintStart_toStartOf="@id/welcome"
         app:layout_constraintEnd_toEndOf="@id/welcome"
@@ -39,15 +39,17 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="@string/username"
         android:layout_marginTop="50dp"
+        app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@id/sign"
         app:layout_constraintEnd_toEndOf="@id/welcome"
         app:layout_constraintStart_toStartOf="@id/welcome">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,14 +58,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:hint="Password"
+        android:hint="@string/password"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="@id/welcome"
         app:layout_constraintStart_toStartOf="@id/welcome"
         app:layout_constraintTop_toBottomOf="@id/userName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -72,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
-        android:text="Forgot Password?"
+        android:text="@string/forgot_password"
         android:textColor="@color/cyan_800"
         android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="@+id/pass"
@@ -82,7 +87,7 @@
         android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
@@ -91,15 +96,14 @@
         app:layout_constraintStart_toStartOf="@+id/pass"
         app:layout_constraintTop_toBottomOf="@id/forgot" />
 
-
     <TextView
         android:id="@+id/new_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="110dp"
         android:layout_marginTop="10dp"
         android:gravity=""
-        android:text="New User?"
+        android:text="@string/new_user"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/loginButton"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
@@ -109,7 +113,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textColor="@color/cyan_800"
         android:textStyle="bold"
         android:layout_marginStart="5dp"
