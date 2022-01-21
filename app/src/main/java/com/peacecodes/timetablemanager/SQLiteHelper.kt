@@ -3,89 +3,148 @@ package com.peacecodes.timetablemanager
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.peacecodes.timetablemanager.models.Data
-import java.lang.Exception
-import kotlin.collections.ArrayList
+import com.peacecodes.timetablemanager.models.TimeTable
 
-class SQLiteHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null, DATABASE_VERSION) {
+class SQLiteHelper(context: Context) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
-   companion object{
+    companion object {
 
-       private const val DATABASE_VERSION = 1
-       private const val DATABASE_NAME = "student.db"
-       private const val STUDENT_TTB = "student_ttb"
-       private const val COLUMN_ID = "id"
-       private const val COLUMN_DAY = "day"
-       private const val COLUMN_TITLE = "title"
-       private const val COLUMN_TIME = "time"
-       private const val COLUMN_CODE = "code"
+        private const val DATABASE_VERSION = 1
+        private const val DATABASE_NAME = "myTimeTable"
+        private const val TABLE_NAME = "timeTable"
+        private const val ID = "id"
+        private const val DAY = "day"
+        private const val COURSE_TITLE = "title"
+        private const val START_TIME = "start_time"
+        private const val END_TIME = "end_time"
+        private const val COURSE_CODE = "code"
 
 
-   }
+    }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val SQL_CREATE_TABLE = ("CREATE TABLE " + STUDENT_TTB + "("
-                + COLUMN_ID + " INTEGER PRIMARY KEY, " +
-                COLUMN_DAY + " TEXT ," +
-                COLUMN_TITLE + " TEXT ," +
-                COLUMN_TIME + " TEXT ," +
-                COLUMN_CODE + " TEXT " + ")")
-        db.execSQL(SQL_CREATE_TABLE)
+        val CREATE_TABLE = "CREATE TABLE $TABLE_NAME (" +
+                ID + " INTEGER PRIMARY KEY, " +
+                DAY + " TEXT ," +
+                COURSE_TITLE + " TEXT ," +
+                START_TIME + " TEXT ," +
+                END_TIME + " TEXT ," +
+                COURSE_CODE + " TEXT );"
+        db.execSQL(CREATE_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db!!.execSQL("DROP TABLE IF EXISTS $STUDENT_TTB")
+        db!!.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(db)
     }
 
-    fun insertTimeTable(ttb: Data): Long{
+//    to insert a timetable to the database
+    fun insertTimeTable(timeTable: TimeTable): Boolean {
         val db = this.writableDatabase
-
-        val contentValues = ContentValues()
-        contentValues.put(COLUMN_ID, ttb.id)
-        contentValues.put(COLUMN_TITLE, ttb.course_title)
-        contentValues.put(COLUMN_TIME, ttb.set_time)
-        contentValues.put(COLUMN_CODE, ttb.course_code)
-
-        val success = db.insert(STUDENT_TTB, null,contentValues)
+        val values = ContentValues()
+        values.put(DAY, timeTable.day)
+        values.put(COURSE_TITLE, timeTable.course_title)
+        values.put(START_TIME, timeTable.start_time)
+        values.put(END_TIME, timeTable.end_time)
+        values.put(COURSE_CODE, timeTable.course_code)
+        val success = db.insert(TABLE_NAME, null, values)
         db.close()
-        return success
+        return (Integer.parseInt("$success") != -1)
     }
 
+//    to get a particular timetable
     @SuppressLint("Range")
-    fun getAllSchedules(): ArrayList<Data>{
-        val ttbList: ArrayList<Data> = ArrayList()
-        val selectQuery = "SELECT * FROM $STUDENT_TTB"
-        val db = this.readableDatabase
-
-        val cursor: Cursor?
-
-        try {
-            cursor = db.rawQuery(selectQuery, null)
-        }catch (e: Exception){
-            e.printStackTrace()
-            db.execSQL(selectQuery)
-            return ArrayList()
+    fun getTimeTable(_id: Int): TimeTable {
+        val timeTable = TimeTable()
+        val db = writableDatabase
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $ID = $_id"
+        val cursor = db.rawQuery(selectQuery, null)
+        if (cursor != null) {
+            cursor.moveToFirst()
+            while (cursor.moveToNext()) {
+                timeTable.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID)))
+                timeTable.course_title = cursor.getString(cursor.getColumnIndex(COURSE_TITLE))
+                timeTable.start_time = cursor.getString(cursor.getColumnIndex(START_TIME))
+                timeTable.end_time = cursor.getString(cursor.getColumnIndex(END_TIME))
+                timeTable.course_code = cursor.getString(cursor.getColumnIndex(COURSE_CODE))
+                timeTable.day = cursor.getString(cursor.getColumnIndex(DAY))
+            }
         }
+        cursor.close()
+        return timeTable
+    }
 
-        var id: Int
-        var course_title: String
-        var set_time: String
-        var course_code: String
-
-        if (cursor.moveToFirst()){
-            do {
-                id = cursor.getInt(cursor.getColumnIndex("id"))
-                course_title = cursor.getString(cursor.getColumnIndex("course_title"))
-                set_time = cursor.getString(cursor.getColumnIndex("set_time"))
-                course_code = cursor.getString(cursor.getColumnIndex("course_code"))
-                val ttb = Data(id = id, course_title = course_title, set_time = set_time, course_code = course_code)
-                ttbList.add(ttb)
-            }while (cursor.moveToNext())
+    //    to read all data stored in the database
+    @SuppressLint("Range")
+    fun getAllTimeTable(): List<TimeTable> {
+        val timeTableList = ArrayList<TimeTable>()
+        val db = writableDatabase
+        val selectQuery = "SELECT * FROM $TABLE_NAME"
+        val cursor = db.rawQuery(selectQuery, null)
+        if (cursor != null) {
+            cursor.moveToFirst()
+            while (cursor.moveToNext()) {
+                val timeTable = TimeTable()
+                timeTable.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID)))
+                timeTable.course_title = cursor.getString(cursor.getColumnIndex(COURSE_TITLE))
+                timeTable.start_time = cursor.getString(cursor.getColumnIndex(START_TIME))
+                timeTable.end_time = cursor.getString(cursor.getColumnIndex(END_TIME))
+                timeTable.course_code = cursor.getString(cursor.getColumnIndex(COURSE_CODE))
+                timeTable.day = cursor.getString(cursor.getColumnIndex(DAY))
+                timeTableList.add(timeTable)
+            }
         }
-        return  ttbList
+        cursor.close()
+        return timeTableList
+    }
+
+    //    to read all timrtable for monday data stored in the database
+    @SuppressLint("Range")
+    fun getDayTimeTable(_day: String): List<TimeTable> {
+        val timeTableList = ArrayList<TimeTable>()
+        val db = writableDatabase
+        val selectQuery = "SELECT * FROM $TABLE_NAME $DAY = $_day"
+        val cursor = db.rawQuery(selectQuery, null)
+        if (cursor != null) {
+            cursor.moveToFirst()
+            while (cursor.moveToNext()) {
+                val timeTable = TimeTable()
+                timeTable.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID)))
+                timeTable.course_title = cursor.getString(cursor.getColumnIndex(COURSE_TITLE))
+                timeTable.start_time = cursor.getString(cursor.getColumnIndex(START_TIME))
+                timeTable.end_time = cursor.getString(cursor.getColumnIndex(END_TIME))
+                timeTable.course_code = cursor.getString(cursor.getColumnIndex(COURSE_CODE))
+                timeTable.day = cursor.getString(cursor.getColumnIndex(DAY))
+                timeTableList.add(timeTable)
+            }
+        }
+        cursor.close()
+        return timeTableList
+    }
+
+    //    to update a particular Timetable in the database
+    fun updateTimeTable(timeTable: TimeTable): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(DAY, timeTable.day)
+        values.put(COURSE_TITLE, timeTable.course_title)
+        values.put(START_TIME, timeTable.start_time)
+        values.put(END_TIME, timeTable.end_time)
+        values.put(COURSE_CODE, timeTable.course_code)
+        val _success =
+            db.update(TABLE_NAME, values, ID + "=?", arrayOf(timeTable.id.toString())).toLong()
+        db.close()
+        return Integer.parseInt("$_success") != -1
+    }
+
+//    to delete a particular timeTable in the database
+    fun deleteTimeTable(_id: Int): Boolean {
+        val db = this.writableDatabase
+        val _success = db.delete(TABLE_NAME, ID + "=?", arrayOf(_id.toString())).toLong()
+        db.close()
+        return Integer.parseInt("$_success") != -1
     }
 }

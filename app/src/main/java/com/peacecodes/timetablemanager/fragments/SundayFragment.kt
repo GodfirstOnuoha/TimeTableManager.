@@ -1,23 +1,15 @@
 package com.peacecodes.timetablemanager.fragments
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.peacecodes.timetablemanager.R
 import com.peacecodes.timetablemanager.SQLiteHelper
 import com.peacecodes.timetablemanager.adapters.RecyclerAdapter
 import com.peacecodes.timetablemanager.databinding.FragmentSundayBinding
-import com.peacecodes.timetablemanager.models.Data
 
 class SundayFragment : Fragment() {
   private lateinit var bind: FragmentSundayBinding

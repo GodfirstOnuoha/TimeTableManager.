@@ -2,16 +2,13 @@ package com.peacecodes.timetablemanager.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.peacecodes.timetablemanager.R
-import com.peacecodes.timetablemanager.models.Data
+import com.peacecodes.timetablemanager.databinding.SingleListItemBinding
+import com.peacecodes.timetablemanager.models.TimeTable
 
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
-private var ttbList: ArrayList<Data> = ArrayList()
+private val timeTableList = mutableListOf<TimeTable>()
 
 //    companion object{
 //     val times = arrayOf(
@@ -43,40 +40,36 @@ private var ttbList: ArrayList<Data> = ArrayList()
 //    }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addItems(items: ArrayList<Data>){
-        this.ttbList.addAll(items)
+    fun addItems(timeTable: List<TimeTable>){
+        this.timeTableList.addAll(timeTable)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.activity_editor, parent, false )
-        return MyViewHolder(adapterLayout)
+        return MyViewHolder(SingleListItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        )
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val ttb = ttbList[position]
-        holder.bindViews(ttb)
-        holder.clockItem.setImageResource(R.drawable.alarm)
+        val timeTable = timeTableList[position]
+        holder.bindItem(timeTable)
+//        holder.clockItem.setImageResource(R.drawable.alarm)
     }
 
-    override fun getItemCount() = ttbList.size
+    override fun getItemCount() = timeTableList.size
 
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var timeItem : TextView
-        var courseItem : TextView
-        var codeItem : TextView
-        var clockItem : ImageView
+    inner class MyViewHolder(private val binding: SingleListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bindItem(timeTable: TimeTable) {
+           binding.courseTitle.text = timeTable.course_title
+           binding.time.text = timeTable.start_time
+           binding.time.text = timeTable.end_time
+           binding.code.text = timeTable.course_code
+//           binding.alarm.setImageDrawable(R.drawable.alarm)
+        }
 
-        init {
-            timeItem = view.findViewById(R.id.time)
-            courseItem = view.findViewById(R.id.course_title)
-            codeItem = view.findViewById(R.id.code)
-            clockItem = view.findViewById(R.id.alarm)
-        }
-        fun bindViews(ttb: Data){
-            timeItem.text = ttb.set_time.toString()
-            courseItem.text = ttb.course_title.toString()
-            codeItem.text = ttb.course_code.toString()
-        }
     }
 }
+
