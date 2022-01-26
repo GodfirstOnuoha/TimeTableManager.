@@ -44,6 +44,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up_with_email">Sign Up With Email</string>
     <string name="sign_up_with_google">Sign Up with Google</string>
+    <string name="email">Email</string>
 
     <string-array name="Days">
 

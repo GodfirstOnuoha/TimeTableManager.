@@ -101,7 +101,7 @@ class SQLiteHelper(context: Context) :
         return timeTableList
     }
 
-    //    to read all timrtable for monday data stored in the database
+    //    to read all timetable for monday data stored in the database
     @SuppressLint("Range")
     fun getDayTimeTable(_day: String): List<TimeTable> {
         val timeTableList = ArrayList<TimeTable>()
