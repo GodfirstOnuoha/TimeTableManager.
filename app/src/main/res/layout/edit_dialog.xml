@@ -5,30 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_day"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    <Spinner
+        android:id="@+id/select_day"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:entries="@array/days"
+        android:gravity="start"
         android:layout_marginTop="32dp"
-        app:boxBackgroundColor="@color/white"
-        android:hint="@string/select_day"
-        app:layout_constraintEnd_toEndOf="@id/course_title"
-        app:layout_constraintStart_toStartOf="@id/course_title"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <AutoCompleteTextView
-            android:id="@+id/select_day"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            tools:ignore="LabelFor" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
+        app:layout_constraintEnd_toEndOf="@id/course_title_layout"
+        app:layout_constraintStart_toStartOf="@id/course_title_layout"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/course_title"
+        android:id="@+id/course_title_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -38,33 +27,35 @@
         android:hint="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_day">
+        app:layout_constraintTop_toBottomOf="@id/select_day">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/course_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/course_code"
+        android:id="@+id/course_code_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/code"
-        app:layout_constraintEnd_toEndOf="@id/course_title"
-        app:layout_constraintStart_toStartOf="@id/course_title"
-        app:layout_constraintTop_toBottomOf="@id/course_title">
+        app:layout_constraintEnd_toEndOf="@id/course_title_layout"
+        app:layout_constraintStart_toStartOf="@id/course_title_layout"
+        app:layout_constraintTop_toBottomOf="@id/course_title_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/course_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/start_time"
+        android:id="@+id/start_time_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -72,26 +63,28 @@
         android:layout_marginTop="8dp"
         android:hint="@string/start_time"
         app:startIconDrawable="@drawable/alarm"
-        app:layout_constraintStart_toStartOf="@id/course_code"
-        app:layout_constraintTop_toBottomOf="@id/course_code">
+        app:layout_constraintStart_toStartOf="@id/course_code_layout"
+        app:layout_constraintTop_toBottomOf="@id/course_code_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/start_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/end_time"
+        android:id="@+id/end_time_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:hint="@string/end_time"
         app:startIconDrawable="@drawable/alarm"
-        app:layout_constraintEnd_toEndOf="@id/course_title"
-        app:layout_constraintStart_toEndOf="@id/start_time"
-        app:layout_constraintTop_toTopOf="@id/start_time">
+        app:layout_constraintEnd_toEndOf="@id/course_title_layout"
+        app:layout_constraintStart_toEndOf="@id/start_time_layout"
+        app:layout_constraintTop_toTopOf="@id/start_time_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/end_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -103,9 +96,9 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:text="@string/save"
-        app:layout_constraintEnd_toEndOf="@id/course_title"
-        app:layout_constraintStart_toStartOf="@id/course_title"
-        app:layout_constraintTop_toBottomOf="@id/start_time" />
+        app:layout_constraintEnd_toEndOf="@id/course_title_layout"
+        app:layout_constraintStart_toStartOf="@id/course_title_layout"
+        app:layout_constraintTop_toBottomOf="@id/start_time_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

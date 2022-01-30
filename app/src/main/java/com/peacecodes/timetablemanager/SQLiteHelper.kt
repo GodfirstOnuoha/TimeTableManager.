@@ -22,13 +22,12 @@ class SQLiteHelper(context: Context) :
         private const val END_TIME = "end_time"
         private const val COURSE_CODE = "code"
 
-
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         val CREATE_TABLE = "CREATE TABLE $TABLE_NAME (" +
                 ID + " INTEGER PRIMARY KEY, " +
-                DAY + " TEXT ," +
+                DAY + " TEXT, " +
                 COURSE_TITLE + " TEXT ," +
                 START_TIME + " TEXT ," +
                 END_TIME + " TEXT ," +
@@ -106,7 +105,7 @@ class SQLiteHelper(context: Context) :
     fun getDayTimeTable(_day: String): List<TimeTable> {
         val timeTableList = ArrayList<TimeTable>()
         val db = writableDatabase
-        val selectQuery = "SELECT * FROM $TABLE_NAME $DAY = $_day"
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $DAY = $_day"
         val cursor = db.rawQuery(selectQuery, null)
         if (cursor != null) {
             cursor.moveToFirst()

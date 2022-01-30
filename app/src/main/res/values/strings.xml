@@ -46,8 +46,9 @@
     <string name="sign_up_with_google">Sign Up with Google</string>
     <string name="email">Email</string>
 
-    <string-array name="Days">
+    <string-array name="days">
 
+        <item>Select Day...</item>
         <item>Sunday</item>
         <item>Monday</item>
         <item>Tuesday</item>

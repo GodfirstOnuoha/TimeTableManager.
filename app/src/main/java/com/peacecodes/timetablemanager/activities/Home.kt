@@ -1,14 +1,14 @@
 package com.peacecodes.timetablemanager.activities
 
-import android.os.Build.ID
 import android.os.Bundle
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.peacecodes.timetablemanager.R
 import com.peacecodes.timetablemanager.SQLiteHelper
 import com.peacecodes.timetablemanager.adapters.ViewPagerAdapter
@@ -45,23 +45,25 @@ private lateinit var binding: ActivityHomeBinding
         val view = layoutInflater.inflate(R.layout.edit_dialog, null)
         builder.setView(view)
 
+        val spinner = view.findViewById<Spinner>(R.id.select_day)
+        val adapter = ArrayAdapter(this@Home,
+            android.R.layout.simple_spinner_item, resources.getStringArray(R.array.days))
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.onItemSelectedListener
+        spinner.adapter
+
+        val saveBtn = view.findViewById<Button>(R.id.save_btn)
         val title = view.findViewById<TextInputEditText>(R.id.course_title)
         val start_time = view.findViewById<TextInputEditText>(R.id.start_time)
         val end_time = view.findViewById<TextInputEditText>(R.id.end_time)
         val code = view.findViewById<TextInputEditText>(R.id.course_code)
 
-        val items = listOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-        val adapter = ArrayAdapter(this@Home, R.layout.list_item, items)
-        val selectDay = view.findViewById<TextInputLayout>(R.id.select_day)
-        (selectDay.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-
-        val saveBtn = view.findViewById<Button>(R.id.save_btn)
-
         val alertDialog = builder.create()
         saveBtn.setOnClickListener {
-           val result = sqliteHelper.insertTimeTable(TimeTable(day = selectDay.editText?.text.toString(),
-               course_title = title.text.toString(), start_time = start_time.text.toString(),
-               end_time = end_time.text.toString(), course_code = code.text.toString()))
+           val result = sqliteHelper.insertTimeTable(TimeTable(
+               day = spinner.selectedItem.toString(), course_title = title.text.toString(),
+               start_time = start_time.text.toString(), end_time = end_time.text.toString(),
+               course_code = code.text.toString()))
             if (result == true){
                 Toast.makeText(this, "Record Saved", Toast.LENGTH_SHORT).show()
             } else {

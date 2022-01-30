@@ -7,41 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.peacecodes.timetablemanager.databinding.SingleListItemBinding
 import com.peacecodes.timetablemanager.models.TimeTable
 
-class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
-private val timeTableList = mutableListOf<TimeTable>()
-
-//    companion object{
-//     val times = arrayOf(
-//        "8:00AM - 9:00AM",
-//        "9:00AM - 10:00AM",
-//        "10:00AM - 11:00AM",
-//        "11:00AM - 12:00PM",
-//        "12:00PM - 1:00PM",
-//        "1:00PM - 2:00PM"
-//    )
-//
-//     val course_titles = arrayOf(
-//        "Software Engineering",
-//        "Data Structures",
-//        "Website Design",
-//        "Information Technology",
-//        "Statistics I",
-//        "Numerical Method I"
-//    )
-//
-//     val codes = arrayOf(
-//        "CSC 226",
-//        "CSC 331",
-//        "CSC 401",
-//        "CSC 221",
-//        "STAT 331",
-//        "CSC 232"
-//    )
-//    }
+class RecyclerAdapter(private var timeTableList: List<TimeTable>) : RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setUpData(timeTable: List<TimeTable>){
-        this.timeTableList.addAll(timeTable)
+        this.timeTableList = timeTable
         notifyDataSetChanged()
     }
 
