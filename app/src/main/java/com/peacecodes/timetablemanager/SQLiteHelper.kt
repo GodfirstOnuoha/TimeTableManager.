@@ -59,7 +59,7 @@ class SQLiteHelper(context: Context) :
     fun getTimeTable(_id: Int): TimeTable {
         val timeTable = TimeTable()
         val db = writableDatabase
-        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $ID = $_id"
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $ID = '$_id'"
         val cursor = db.rawQuery(selectQuery, null)
         if (cursor != null) {
             cursor.moveToFirst()
@@ -105,7 +105,7 @@ class SQLiteHelper(context: Context) :
     fun getDayTimeTable(_day: String): List<TimeTable> {
         val timeTableList = ArrayList<TimeTable>()
         val db = writableDatabase
-        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $DAY = $_day"
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $DAY = '$_day'"
         val cursor = db.rawQuery(selectQuery, null)
         if (cursor != null) {
             cursor.moveToFirst()

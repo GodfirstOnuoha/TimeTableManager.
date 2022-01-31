@@ -5,16 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/select_day"
+    <TextView
+        android:id="@+id/text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:entries="@array/days"
-        android:gravity="start"
+        android:text="Add Schedules"
+        android:textColor="@color/cyan_800"
+        android:textSize="25dp"
+        android:gravity="center"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@id/course_title_layout"
         app:layout_constraintStart_toStartOf="@id/course_title_layout"
+        app:layout_constraintEnd_toEndOf="@id/course_title_layout"
         app:layout_constraintTop_toTopOf="parent"/>
+
+             <Spinner
+            android:id="@+id/select_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/days"
+            android:gravity="start"
+            app:layout_constraintEnd_toEndOf="@id/course_title_layout"
+            app:layout_constraintStart_toStartOf="@id/course_title_layout"
+            app:layout_constraintTop_toBottomOf="@id/text"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/course_title_layout"

@@ -30,6 +30,8 @@ class ThursdayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sqliteHelper = SQLiteHelper(requireActivity())
+
         layoutManager = LinearLayoutManager(activity)
         adapter = RecyclerAdapter(sqliteHelper.getDayTimeTable("Thursday"))
 

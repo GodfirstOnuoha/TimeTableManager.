@@ -1,6 +1,7 @@
 package com.peacecodes.timetablemanager.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
@@ -19,7 +20,7 @@ class Home : AppCompatActivity() {
     private lateinit var sqliteHelper: SQLiteHelper
 private lateinit var binding: ActivityHomeBinding
     var tabTitle =
-        arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        arrayOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +67,8 @@ private lateinit var binding: ActivityHomeBinding
                course_code = code.text.toString()))
             if (result == true){
                 Toast.makeText(this, "Record Saved", Toast.LENGTH_SHORT).show()
+                clearData()
+                Log.e("ppppp", "${sqliteHelper.getAllTimeTable().size} ")
             } else {
                 Toast.makeText(this, "Record not saved", Toast.LENGTH_SHORT).show()
             }
@@ -75,8 +78,13 @@ private lateinit var binding: ActivityHomeBinding
         binding.floatingActionButton.setOnClickListener {
             alertDialog.show()
         }
-
     }
-
+    fun clearData(){
+//        title.text
+//        start_time.setText("")
+//        end_time.setText("")
+//        code.setText("")
+//        spinner.clearFocus()
+    }
 }
 

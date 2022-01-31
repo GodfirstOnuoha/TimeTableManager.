@@ -34,8 +34,8 @@ class RecyclerAdapter(private var timeTableList: List<TimeTable>) : RecyclerView
         RecyclerView.ViewHolder(binding.root) {
         fun bindItem(timeTable: TimeTable) {
            binding.courseTitle.text = timeTable.course_title
-           binding.time.text = timeTable.start_time
-           binding.time.text = timeTable.end_time
+           binding.startTime.text = timeTable.start_time
+           binding.endTime.text = timeTable.end_time
            binding.code.text = timeTable.course_code
 //           binding.alarm.setImageDrawable(R.drawable.alarm)
         }

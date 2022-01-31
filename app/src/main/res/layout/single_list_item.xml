@@ -25,16 +25,36 @@
             app:tint="@color/cyan_800" />
 
         <TextView
-            android:id="@+id/time"
-            android:layout_width="0dp"
+            android:id="@+id/start_time"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
             android:gravity="center"
-            android:text="@string/_8_00am_9_00am"
+            android:text="8:00AM"
             android:textColor="@color/cyan_800"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/alarm"
-            app:layout_constraintStart_toStartOf="@+id/alarm"
+            app:layout_constraintEnd_toStartOf="@+id/end_time"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/alarm" />
+
+        <ImageView
+            android:id="@+id/minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_minus"
+            app:layout_constraintStart_toEndOf="@id/start_time"
+            app:layout_constraintTop_toBottomOf="@id/alarm"
+            app:tint="@color/cyan_800" />
+
+        <TextView
+            android:id="@+id/end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9:00AM"
+            android:textColor="@color/cyan_800"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/alarm"
+            app:layout_constraintStart_toEndOf="@id/minus"/>
 
         <TextView
             android:id="@+id/course_title"
@@ -47,8 +67,8 @@
             android:textStyle="bold"
             android:drawableStart="@drawable/book"
             android:drawablePadding="8dp"
-            app:layout_constraintStart_toStartOf="@+id/time"
-            app:layout_constraintTop_toBottomOf="@id/time" />
+            app:layout_constraintStart_toStartOf="@+id/alarm"
+            app:layout_constraintTop_toBottomOf="@id/start_time" />
 
         <TextView
             android:id="@+id/code"
