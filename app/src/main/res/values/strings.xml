@@ -45,6 +45,9 @@
     <string name="sign_up_with_email">Sign Up With Email</string>
     <string name="sign_up_with_google">Sign Up with Google</string>
     <string name="email">Email</string>
+    <string name="reg_no">Reg. No</string>
+    <string name="fill_in_the_required_fields_to_get_registered_to_the_application">Fill in the required fields to get registered to the application</string>
+    <string name="add_schedules">Add Schedules</string>
 
     <string-array name="days">
 

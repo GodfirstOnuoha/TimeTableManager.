@@ -76,6 +76,30 @@ class SQLiteHelper(context: Context) :
         return timeTable
     }
 
+    //    to get a particular timetable
+    @SuppressLint("Range")
+    fun getTime(_time: String): List<TimeTable> {
+        val timeTableList = ArrayList<TimeTable>()
+        val db = writableDatabase
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $START_TIME = '$_time'"
+        val cursor = db.rawQuery(selectQuery, null)
+        if (cursor != null) {
+            cursor.moveToFirst()
+            while (cursor.moveToNext()) {
+                val timeTable = TimeTable()
+                timeTable.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ID)))
+                timeTable.course_title = cursor.getString(cursor.getColumnIndex(COURSE_TITLE))
+                timeTable.start_time = cursor.getString(cursor.getColumnIndex(START_TIME))
+                timeTable.end_time = cursor.getString(cursor.getColumnIndex(END_TIME))
+                timeTable.course_code = cursor.getString(cursor.getColumnIndex(COURSE_CODE))
+                timeTable.day = cursor.getString(cursor.getColumnIndex(DAY))
+                timeTableList.add(timeTable)
+            }
+        }
+        cursor.close()
+        return timeTableList
+    }
+
     //    to read all data stored in the database
     @SuppressLint("Range")
     fun getAllTimeTable(): List<TimeTable> {

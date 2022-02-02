@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signUpFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/sundayFragment"
@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_signInFragment_to_home"
             app:destination="@id/home" />
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
 
     <activity

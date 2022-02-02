@@ -9,24 +9,36 @@
         android:id="@+id/text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Add Schedules"
+        android:text="@string/add_schedules"
+        android:textStyle="bold"
         android:textColor="@color/cyan_800"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:gravity="center"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="@id/course_title_layout"
         app:layout_constraintEnd_toEndOf="@id/course_title_layout"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-             <Spinner
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/select_day_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/select_day"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@id/course_title_layout"
+        app:layout_constraintStart_toStartOf="@id/course_title_layout"
+        app:layout_constraintTop_toBottomOf="@id/text">
+
+        <AutoCompleteTextView
             android:id="@+id/select_day"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/days"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="@id/course_title_layout"
-            app:layout_constraintStart_toStartOf="@id/course_title_layout"
-            app:layout_constraintTop_toBottomOf="@id/text"/>
+            android:inputType="none"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/course_title_layout"
@@ -39,7 +51,7 @@
         android:hint="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/select_day">
+        app:layout_constraintTop_toBottomOf="@id/select_day_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/course_title"
