@@ -4,33 +4,43 @@
     <group android:checkableBehavior="single">
 
         <item android:id="@+id/signUpFragment"
+            android:icon="@drawable/registration"
             android:title="@string/sign_up"/>
 
         <item android:id="@+id/signInFragment"
+            android:icon="@drawable/login"
             android:title="@string/sign_in"/>
 
         <item android:id="@+id/home"
+            android:icon="@drawable/home"
             android:title="@string/home"/>
 
         <item android:id="@+id/sundayFragment"
+            android:icon="@drawable/day"
             android:title="@string/sunday"/>
 
         <item android:id="@+id/mondayFragment"
+            android:icon="@drawable/day"
             android:title="@string/monday"/>
 
         <item android:id="@+id/tuesdayFragment"
+            android:icon="@drawable/day"
             android:title="@string/tuesday"/>
 
         <item android:id="@+id/wednesdayFragment"
+            android:icon="@drawable/day"
             android:title="@string/wednesday"/>
 
         <item android:id="@+id/thursdayFragment"
+            android:icon="@drawable/day"
             android:title="@string/thursday"/>
 
         <item android:id="@+id/fridayFragment"
+            android:icon="@drawable/day"
             android:title="@string/friday"/>
 
         <item android:id="@+id/saturdayFragment"
+            android:icon="@drawable/day"
             android:title="@string/saturday"/>
 
         <item android:id="@+id/settingsFragment"

@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fullName"
+        android:id="@+id/fullNameLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/full_name"
@@ -34,13 +34,14 @@
         app:layout_constraintTop_toBottomOf="@id/sign_text">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/userName"
+        android:id="@+id/userNameLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/username"
@@ -49,15 +50,16 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="@+id/sign_text"
         app:layout_constraintStart_toStartOf="@+id/sign_text"
-        app:layout_constraintTop_toBottomOf="@id/fullName">
+        app:layout_constraintTop_toBottomOf="@id/fullNameLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email"
+        android:id="@+id/reg_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/reg_no"
@@ -66,60 +68,63 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="@+id/sign_text"
         app:layout_constraintStart_toStartOf="@+id/sign_text"
-        app:layout_constraintTop_toBottomOf="@id/userName">
+        app:layout_constraintTop_toBottomOf="@id/userNameLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/pass"
+        android:id="@+id/pass_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/password"
+        app:errorEnabled="true"
         app:endIconMode="password_toggle"
         app:helperTextEnabled="true"
         app:helperText="1 Uppercase, 2 lowercase"
         app:counterEnabled="true"
-        app:counterMaxLength="6"
-        app:errorEnabled="true"
+        app:counterMaxLength="8"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="@+id/sign_text"
         app:layout_constraintStart_toStartOf="@+id/sign_text"
-        app:layout_constraintTop_toBottomOf="@id/email">
+        app:layout_constraintTop_toBottomOf="@id/reg_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass_word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/confirm"
+        android:id="@+id/confirm_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/confirm_password"
+        app:errorEnabled="true"
         app:endIconMode="password_toggle"
         app:helperTextEnabled="true"
         app:helperText="1 Uppercase, 2 lowercase"
         app:counterEnabled="true"
-        app:counterMaxLength="6"
-        app:errorEnabled="true"
+        app:counterMaxLength="8"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="@+id/sign_text"
         app:layout_constraintStart_toStartOf="@+id/sign_text"
-        app:layout_constraintTop_toBottomOf="@id/pass">
+        app:layout_constraintTop_toBottomOf="@id/pass_layout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/emailButton"
+        android:id="@+id/Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -130,6 +135,6 @@
         android:text="@string/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirm" />
+        app:layout_constraintTop_toBottomOf="@id/confirm_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

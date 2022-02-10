@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.peacecodes.timetablemanager.SQLiteHelper
 import com.peacecodes.timetablemanager.adapters.RecyclerAdapter
 import com.peacecodes.timetablemanager.databinding.FragmentMondayBinding
+import com.peacecodes.timetablemanager.db.SQLiteHelper
 
 class MondayFragment : Fragment() {
     private lateinit var bind: FragmentMondayBinding
@@ -38,4 +38,5 @@ class MondayFragment : Fragment() {
         bind.recyclerView.adapter = adapter
 
     }
+
 }

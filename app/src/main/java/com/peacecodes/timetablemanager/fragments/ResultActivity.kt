@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.peacecodes.timetablemanager.R
 
-class WidgetFragment : Fragment() {
+class ResultActivity : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

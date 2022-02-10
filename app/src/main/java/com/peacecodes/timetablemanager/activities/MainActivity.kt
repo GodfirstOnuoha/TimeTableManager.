@@ -11,6 +11,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.peacecodes.timetablemanager.R
 import com.peacecodes.timetablemanager.databinding.ActivityMainBinding
+import com.peacecodes.timetablemanager.notification.NotificationUtils
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -19,6 +21,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toolbar: Toolbar
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    private val notificationTime = Calendar.getInstance().timeInMillis + 5000
+    private var notified = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,10 @@ class MainActivity : AppCompatActivity() {
 
         //connect navigationView with navController
         navigationView.setupWithNavController(navController)
+
+        if (!notified) {
+            NotificationUtils().setNotification(notificationTime, this@MainActivity)
+        }
 
     }
 

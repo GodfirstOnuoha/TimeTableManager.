@@ -26,6 +26,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".notification.NotificationReceiver"
+            android:enabled="true" />
+
+        <service
+            android:name=".notification.NotificationService"
+            android:enabled="true" />
+
+        <activity android:name=".activities.ResultActivity"
+            android:excludeFromRecents="true"
+            android:label="You have received a sample notification from TimeTable App"
+            android:launchMode="singleTask"
+            android:taskAffinity=""/>
+
     </application>
 
 </manifest>

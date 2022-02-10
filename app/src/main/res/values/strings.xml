@@ -49,9 +49,19 @@
     <string name="fill_in_the_required_fields_to_get_registered_to_the_application">Fill in the required fields to get registered to the application</string>
     <string name="add_schedules">Add Schedules</string>
 
+    <string name="error_message_name">Enter Full Name</string>
+    <string name="error_message_reg">Enter Valid Reg Number</string>
+    <string name="error_message_password">Enter Password</string>
+    <string name="success_message">Registration Successful</string>
+    <string name="text_not_member">No account yet? Create one</string>
+    <string name="text_already_member">Already a member? Login</string>
+    <string name="error_email_exists">Reg Number Already Exists</string>
+    <string name="error_password_match">Password Does Not Matches</string>
+    <string name="error_valid_email_password">Wrong Reg Number or Password</string>
+
     <string-array name="days">
 
-<!--        <item>Select Day...</item>-->
+        <!--        <item>Select Day...</item>-->
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>

@@ -1,4 +1,4 @@
-package com.peacecodes.timetablemanager
+package com.peacecodes.timetablemanager.db
 
 import android.annotation.SuppressLint
 import android.content.ContentValues

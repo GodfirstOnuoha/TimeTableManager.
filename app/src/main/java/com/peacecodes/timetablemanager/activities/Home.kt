@@ -9,9 +9,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.peacecodes.timetablemanager.R
-import com.peacecodes.timetablemanager.SQLiteHelper
 import com.peacecodes.timetablemanager.adapters.ViewPagerAdapter
 import com.peacecodes.timetablemanager.databinding.ActivityHomeBinding
+import com.peacecodes.timetablemanager.db.SQLiteHelper
 import com.peacecodes.timetablemanager.models.TimeTable
 
 class Home : AppCompatActivity() {
@@ -65,14 +65,16 @@ private lateinit var binding: ActivityHomeBinding
 
         val alertDialog = builder.create()
         saveBtn.setOnClickListener {
-           val result = sqliteHelper.insertTimeTable(TimeTable(
+           val result = sqliteHelper.insertTimeTable(
+               TimeTable(
                day = SelectDay.editText?.text.toString(), course_title = title.text.toString(),
                start_time = start_time.text.toString(), end_time = end_time.text.toString(),
-               course_code = code.text.toString()))
+               course_code = code.text.toString())
+           )
             if (result == true){
                 Toast.makeText(this, "Record Saved", Toast.LENGTH_SHORT).show()
-                clearData()
                 Log.e("ppppp", "${sqliteHelper.getAllTimeTable().size} ")
+                sqliteHelper.getAllTimeTable()
             } else {
                 Toast.makeText(this, "Record not saved", Toast.LENGTH_SHORT).show()
             }
@@ -82,6 +84,7 @@ private lateinit var binding: ActivityHomeBinding
             end_time.setText("")
             code.setText("")
             SelectDay.editText?.setText("")
+//            Toast.makeText(this, "${SelectDay.editText?.text}", Toast.LENGTH_SHORT).show()
         }
 
         binding.floatingActionButton.setOnClickListener {

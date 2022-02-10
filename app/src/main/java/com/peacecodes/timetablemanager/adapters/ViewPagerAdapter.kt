@@ -15,14 +15,14 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            0 -> return SundayFragment()
-            1 -> return MondayFragment()
-            2 -> return TuesdayFragment()
-            3 -> return WednesdayFragment()
-            4 -> return ThursdayFragment()
-            5 -> return FridayFragment()
-            6 -> return SaturdayFragment()
-            else -> return SundayFragment()
+            0 -> return MondayFragment()
+            1 -> return TuesdayFragment()
+            2 -> return WednesdayFragment()
+            3 -> return ThursdayFragment()
+            4 -> return FridayFragment()
+            5 -> return SaturdayFragment()
+            6 -> return SundayFragment()
+            else -> return MondayFragment()
         }
     }
 }
