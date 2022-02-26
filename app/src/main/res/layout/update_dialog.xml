@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/add_schedules"
+        android:text="Update Schedule"
         android:textColor="@color/cyan_800"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -116,13 +116,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/save_btn"
+        android:id="@+id/update_btn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Update"
         app:layout_constraintEnd_toEndOf="@id/course_title_layout"
         app:layout_constraintStart_toStartOf="@id/course_title_layout"
         app:layout_constraintTop_toBottomOf="@id/start_time_layout" />
