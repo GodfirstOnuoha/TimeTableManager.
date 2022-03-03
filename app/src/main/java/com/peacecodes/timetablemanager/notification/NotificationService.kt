@@ -1,101 +1,67 @@
 package com.peacecodes.timetablemanager.notification
 
-import android.annotation.SuppressLint
-import android.app.*
-import android.content.Context
+import android.app.PendingIntent
+import android.app.Service
 import android.content.Intent
-import android.database.Cursor
-import android.graphics.BitmapFactory
-import android.media.RingtoneManager
-import android.os.Build
+import android.media.MediaPlayer
+import android.os.IBinder
+import android.provider.Settings
+import androidx.core.app.NotificationCompat
 import com.peacecodes.timetablemanager.R
-import com.peacecodes.timetablemanager.fragments.ResultActivity
-import java.util.*
+import com.peacecodes.timetablemanager.activities.MainActivity
+import com.peacecodes.timetablemanager.util.Util
 
-class NotificationService : IntentService("NotificationService") {
+class NotificationService : Service() {
 
-    private lateinit var notification: Notification
-    private val notificationId: Int = 1000
-    var mCursor: Cursor? = null
+    private lateinit var mediaPlayer: MediaPlayer
 
-    @SuppressLint("NewApi")
-    private fun createChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val context = this.applicationContext
-            val notificationManager =
-                context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance)
-            notificationChannel.enableVibration(true)
-            notificationChannel.setShowBadge(true)
-            notificationChannel.enableLights(true)
-//           notificationChannel.lightColor = color.parseColor()
-//           notificationChannel.
-            notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-            notificationManager.createNotificationChannel(notificationChannel)
-        }
+    override fun onCreate() {
+        super.onCreate()
+        mediaPlayer = MediaPlayer.create(this, Settings.System.DEFAULT_ALARM_ALERT_URI)
     }
 
-    companion object {
-        const val CHANNEL_NAME = "TimeTable Manager"
-        const val CHANNEL_ID = "com.peacecodes.timetablemanager.notification.CHANNEL_ID"
+    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+        val notificationIntent = Intent(this, MainActivity::class.java)
+        val notificationPendingIntent =
+            PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_ONE_SHOT)
+
+        val dismissIntent = Intent(this, NotificationReceiver::class.java).apply {
+            action = Util.ACTION_DISMISS_ALARM
+            putExtra(Util.SCHEDULE_ID, intent.getStringExtra(Util.SCHEDULE_ID))
+        }
+        val dismissPendingIntent = PendingIntent.getBroadcast(
+            this,
+            intent.getIntExtra(Util.SCHEDULE_ID, 0),
+            dismissIntent,
+            PendingIntent.FLAG_CANCEL_CURRENT
+        )
+
+        val notification = NotificationCompat.Builder(this, Util.NOTIFICATION_CHANNEL_ID)
+            .setContentTitle("Schedule Reminder")
+            .setContentText(intent.getStringExtra(Util.SCHEDULE_TITLE))
+            .setSmallIcon(R.drawable.alarm)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
+            /*.setStyle(NotificationCompat.BigTextStyle()
+                    .bigText(intent.getStringExtra(Constants.SCHEDULE_TITLE))
+                    .setBigContentTitle("Schedule Reminder"))*/
+            .addAction(R.drawable.delete, "Dismiss", dismissPendingIntent)
+            .build()
+
+        mediaPlayer.start()
+        mediaPlayer.isLooping = true
+
+        startForeground(1, notification)
+
+        return START_STICKY
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
-    override fun onHandleIntent(intent: Intent?) {
-        createChannel()
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.stop()
+    }
 
-        var timestamp: Long = 0
-        if (intent != null && intent.extras != null) {
-            timestamp = intent.extras!!.getLong("timestamp")
-        }
-        if (timestamp > 0) {
-            val context = this.applicationContext
-            var notificationManager: NotificationManager =
-                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            val notifyIntent = Intent(this, ResultActivity::class.java)
-            val title = "TimeTable Manager"
-            val message = "Your Schedules for today"
-            notifyIntent.putExtra("title", title)
-            notifyIntent.putExtra("message", message)
-            notifyIntent.putExtra("notification", true)
-            notifyIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
-            val calendar = Calendar.getInstance()
-            calendar.timeInMillis = timestamp
-
-
-            val pendingIntent = PendingIntent.getActivity(
-                context, 0, notifyIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
-            )
-
-            val res = this.resources
-            val uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                notification = Notification.Builder(this, CHANNEL_ID)
-                    .setContentIntent(pendingIntent)
-                    .setSmallIcon(R.drawable.calendar)
-                    .setLargeIcon(BitmapFactory.decodeResource(res, R.mipmap.ic_launcher))
-                    .setAutoCancel(true)
-                    .setContentTitle(title)
-                    .setStyle(Notification.BigTextStyle())
-                    .setContentText(message).build()
-            } else
-                notification = Notification.Builder(this)
-                    .setContentIntent(pendingIntent)
-                    .setSmallIcon(R.drawable.calendar)
-                    .setAutoCancel(true)
-                    .setContentTitle(title)
-                    .setPriority(Notification.PRIORITY_MAX)
-                    .setSound(uri)
-                    .setStyle(Notification.BigTextStyle())
-                    .setContentText(message).build()
-            notificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            notificationManager.notify(notificationId, notification)
-        }
+    override fun onBind(p0: Intent?): IBinder? {
+        return null
     }
 }

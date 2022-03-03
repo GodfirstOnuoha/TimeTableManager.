@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ChibuFirst/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/time_drawable.xml" value="0.2203125" />
+        <entry key="..\:/Users/ChibuFirst/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/edit_dialog.xml" value="0.20102564102564102" />
+        <entry key="..\:/Users/ChibuFirst/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/single_list_item.xml" value="0.20102564102564102" />
+        <entry key="..\:/Users/ChibuFirst/AndroidStudioProjects/TimeTableManager/app/src/main/res/layout/update_dialog.xml" value="0.20102564102564102" />
         <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/alarm.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/book.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/Peace/AndroidStudioProjects/TimeTableManager/app/src/main/res/drawable/btn_bg.xml" value="0.240625" />

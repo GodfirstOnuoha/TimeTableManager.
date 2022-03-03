@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.peacecodes.timetablemanager">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/calendar"
@@ -29,17 +32,20 @@
 
         <receiver
             android:name=".notification.NotificationReceiver"
-            android:enabled="true" />
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
-        <service
-            android:name=".notification.NotificationService"
-            android:enabled="true" />
-
-        <activity android:name=".activities.ResultActivity"
+        <activity
+            android:name=".activities.ResultActivity"
             android:excludeFromRecents="true"
             android:label="You have received a sample notification from TimeTable App"
             android:launchMode="singleTask"
-            android:taskAffinity=""/>
+            android:taskAffinity="" />
 
     </application>
 

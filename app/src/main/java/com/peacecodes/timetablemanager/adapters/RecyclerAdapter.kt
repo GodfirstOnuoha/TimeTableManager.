@@ -1,12 +1,10 @@
 package com.peacecodes.timetablemanager.adapters
 
+import android.app.TimePickerDialog
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -16,6 +14,7 @@ import com.peacecodes.timetablemanager.R
 import com.peacecodes.timetablemanager.databinding.SingleListItemBinding
 import com.peacecodes.timetablemanager.db.TimeTableDbHelper
 import com.peacecodes.timetablemanager.models.TimeTable
+import com.peacecodes.timetablemanager.util.Util
 
 class RecyclerAdapter(private var timeTableList: ArrayList<TimeTable>) :
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
@@ -55,14 +54,50 @@ class RecyclerAdapter(private var timeTableList: ArrayList<TimeTable>) :
                 val updateBtn = view.findViewById<Button>(R.id.update_btn)
                 val code = view.findViewById<TextInputEditText>(R.id.course_code)
                 val title = view.findViewById<TextInputEditText>(R.id.course_title)
-                val startTime = view.findViewById<TextInputEditText>(R.id.start_time)
-                val endTime = view.findViewById<TextInputEditText>(R.id.end_time)
+                val startTime = view.findViewById<TextView>(R.id.start_time_text)
+                val endTime = view.findViewById<TextView>(R.id.end_time_text)
+
+                var startHour = 8
+                var startMinute = 30
+                var currentStartTime = timeTable.start
+                startTime.text = currentStartTime
+
+                startTime.setOnClickListener {
+                    val timeListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        startHour = hourOfDay
+                        startMinute = minute
+                        currentStartTime =
+                            "${Util.getMainHour(hourOfDay)}:${Util.getMainMinutes(minute)} ${
+                                Util.getAmOrPm(
+                                hourOfDay
+                            )}"
+                        startTime.text = currentStartTime
+                    }
+                    TimePickerDialog(binding.root.context, timeListener, startHour, startMinute, false).show()
+                }
+
+                var endHour = 10
+                var endMinute = 30
+                var currentEndTime = timeTable.end
+                endTime.text = currentEndTime
+
+                endTime.setOnClickListener {
+                    val timeListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        endHour = hourOfDay
+                        endMinute = minute
+                        currentEndTime =
+                            "${Util.getMainHour(hourOfDay)}:${Util.getMainMinutes(minute)} ${
+                                Util.getAmOrPm(
+                                hourOfDay
+                            )}"
+                        endTime.text = currentEndTime
+                    }
+                    TimePickerDialog(binding.root.context, timeListener, endHour, endMinute, false).show()
+                }
 
                 selectDay.editText?.setText(timeTable.day)
                 code.setText(timeTable.code)
                 title.setText(timeTable.title)
-                startTime.setText(timeTable.start)
-                endTime.setText(timeTable.end)
 
                 val items =
                     listOf(
@@ -120,8 +155,8 @@ class RecyclerAdapter(private var timeTableList: ArrayList<TimeTable>) :
 
                         alertDialog.dismiss()
                         title.setText("")
-                        startTime.setText("")
-                        endTime.setText("")
+                        startTime.text = ""
+                        endTime.text = ""
                         code.setText("")
                         selectDay.editText?.setText("")
                     }

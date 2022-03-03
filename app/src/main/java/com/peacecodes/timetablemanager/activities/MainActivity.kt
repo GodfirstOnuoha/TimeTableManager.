@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() {
         //connect navigationView with navController
         navigationView.setupWithNavController(navController)
 
-        if (!notified) {
-            NotificationUtils().setNotification(notificationTime, this@MainActivity)
-        }
+//        if (!notified) {
+//            NotificationUtils().setNotification(notificationTime, this@MainActivity)
+//        }
 
     }
 

@@ -1,5 +1,9 @@
 package com.peacecodes.timetablemanager.activities
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -14,6 +18,10 @@ import com.peacecodes.timetablemanager.adapters.ViewPagerAdapter
 import com.peacecodes.timetablemanager.databinding.ActivityHomeBinding
 import com.peacecodes.timetablemanager.db.TimeTableDbHelper
 import com.peacecodes.timetablemanager.models.TimeTable
+import com.peacecodes.timetablemanager.notification.NotificationReceiver
+import com.peacecodes.timetablemanager.util.Util
+import java.util.*
+import kotlin.random.Random
 
 class Home : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -55,8 +63,44 @@ class Home : AppCompatActivity() {
         val saveBtn = view.findViewById<Button>(R.id.save_btn)
         val code = view.findViewById<TextInputEditText>(R.id.course_code)
         val title = view.findViewById<TextInputEditText>(R.id.course_title)
-        val startTime = view.findViewById<TextInputEditText>(R.id.start_time)
-        val endTime = view.findViewById<TextInputEditText>(R.id.end_time)
+        val startTime = view.findViewById<TextView>(R.id.start_time_text)
+        val endTime = view.findViewById<TextView>(R.id.end_time_text)
+
+        var startHour = 8
+        var startMinute = 30
+        var currentStartTime = "${Util.getMainHour(startHour)}:${Util.getMainMinutes(startMinute)} ${Util.getAmOrPm(startHour)}"
+        startTime.text = currentStartTime
+
+        startTime.setOnClickListener {
+            val timeListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                startHour = hourOfDay
+                startMinute = minute
+                currentStartTime =
+                    "${Util.getMainHour(hourOfDay)}:${Util.getMainMinutes(minute)} ${Util.getAmOrPm(
+                        hourOfDay
+                    )}"
+                startTime.text = currentStartTime
+            }
+            TimePickerDialog(this, timeListener, startHour, startMinute, false).show()
+        }
+
+        var endHour = 10
+        var endMinute = 30
+        var currentEndTime = "${Util.getMainHour(endHour)}:${Util.getMainMinutes(endMinute)} ${Util.getAmOrPm(endHour)}"
+        endTime.text = currentEndTime
+
+        endTime.setOnClickListener {
+            val timeListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                endHour = hourOfDay
+                endMinute = minute
+                currentEndTime =
+                    "${Util.getMainHour(hourOfDay)}:${Util.getMainMinutes(minute)} ${Util.getAmOrPm(
+                        hourOfDay
+                    )}"
+                endTime.text = currentEndTime
+            }
+            TimePickerDialog(this, timeListener, endHour, endMinute, false).show()
+        }
 
         val alertDialog = builder.create()
         saveBtn.setOnClickListener {
@@ -77,6 +121,31 @@ class Home : AppCompatActivity() {
                 )
                 val result = dbHelper.insertTimeTable(timeTable)
                 if (result) {
+                    val alarmId: Int = Random.nextInt(Int.MAX_VALUE)
+                    val alarmTitle = "It's time for your \"${timeTable.code}\" (${timeTable.start} to ${timeTable.end})"
+                    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                    val alarmIntent = Intent(this, NotificationReceiver::class.java).apply {
+                        action = Util.ACTION_SCHEDULE_ALARM
+                        putExtra(Util.SCHEDULE_ID, alarmId)
+                        putExtra(Util.SCHEDULE_DAY, Util.getDayNumber(timeTable.day))
+                        putExtra(Util.SCHEDULE_TITLE, alarmTitle)
+                    }
+                    val alarmPendingIntent = PendingIntent.getBroadcast(this, alarmId, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+                    val calendar = Calendar.getInstance().apply {
+                        timeInMillis = System.currentTimeMillis()
+                        set(Calendar.DAY_OF_WEEK, Util.getDayNumber(timeTable.day))
+                        set(Calendar.HOUR_OF_DAY, startHour)
+                        set(Calendar.MINUTE, startMinute)
+                        set(Calendar.SECOND, 0)
+                        set(Calendar.MILLISECOND, 0)
+                    }
+
+                    // if alarm time has already passed, increment day by 1
+                    if (calendar.timeInMillis <= System.currentTimeMillis()) {
+                        calendar.set(Calendar.DAY_OF_MONTH, Calendar.DAY_OF_MONTH + 1)
+                    }
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, 7 * 24 * 60 * 60 * 1000, alarmPendingIntent)
+
                     Toast.makeText(this, "Schedule added successfully!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, Home::class.java))
                     finish()
@@ -86,8 +155,8 @@ class Home : AppCompatActivity() {
 
                 alertDialog.dismiss()
                 title.setText("")
-                startTime.setText("")
-                endTime.setText("")
+                startTime.text = ""
+                endTime.text = ""
                 code.setText("")
                 selectDay.editText?.setText("")
             }
